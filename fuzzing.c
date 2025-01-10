@@ -3,9 +3,17 @@
 #include <string.h>
 #include <ctype.h>
 
+#ifdef _WIN32
+#include <windows.h>
+#define random() ((long)rand())
+#endif
+
 #include "smaz2.h"
 
 int main(void) {
+    #ifdef _WIN32
+    srand((unsigned int)GetTickCount64());
+    #endif
     unsigned char in[512];
     unsigned char out[4096];
     unsigned char d[4096];
